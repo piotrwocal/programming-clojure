@@ -1,7 +1,7 @@
 (ns programming-clojure.core-test
-  (:require [clojure.test :refer :all]
-            [programming-clojure.core :refer :all]))
+	(:require [clojure.test :refer :all]
+						[programming-clojure.core :refer :all])
+	(:use midje.sweet))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(fact
+	(+ 2 2) => 4)
