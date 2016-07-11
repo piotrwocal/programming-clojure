@@ -43,6 +43,7 @@
 										(fact "or before facts"
 													(ready) => true))
 
+;top-down testing with mocked methods with params
 (unfinished my-odd)
 
 (defn my-odd-check[x]
