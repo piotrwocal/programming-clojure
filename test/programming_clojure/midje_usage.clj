@@ -11,18 +11,20 @@
 			(str/split "" #"irrelevant") => [""]
 			(str/split "no regexp matches" #"a+\s+[ab]") => ["no regexp matches"])
 
-(tabular
-	(fact (+ ?x ?y) => ?expected)
-	?x ?y ?expected
-	0 0 0
-	1 2 3
-	5 2 7)
+(tabular (fact "similar to 'are' macro"
+					 (+ ?x ?y) => ?expected)
+				 ?x ?y ?expected
+				 0 0 0
+				 1 2 3
+				 5 2 7)
 
 (fact
-	[1 2 3] => (just [odd? even? odd?]))
+	[1 2 3] => (just [odd? even? odd?])
+	[1 2 3] => (just [3 2 1] :in-any-order ))
 
 
 ; top-down testing
+; using unfinished/provided/against-background
 (unfinished pilot-ready copilot-ready flight-engineer-ready)
 
 (defn ready []
@@ -46,7 +48,7 @@
 ;top-down testing with mocked methods with params
 (unfinished my-odd)
 
-(defn my-odd-check[x]
+(defn my-odd-check [x]
 	(my-odd x))
 
 (fact
