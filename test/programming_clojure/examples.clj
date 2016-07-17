@@ -38,7 +38,8 @@
 				city => "Boston"))
 
 
-; destructuring used in function args list can simulate null-arity
+
+; -------------- Functions ----------------
 (defn make-user [& [user-id]]
 	{:user-id (or user-id
 								(str (java.util.UUID/randomUUID)))})
@@ -51,15 +52,19 @@
 (defn make-user2
 	[username & {:keys [email join-date]
 							 :or   {join-date (java.util.Date.)}}]
-	{:username username
+	{:username  username
 	 :join-date join-date
-	 :email email})
+	 :email     email})
 
 (fact "keyword argument example - using destructuring"
 			(make-user2 "Bruce Lee") => (contains {:username "Bruce Lee"})
 			(make-user2 "Chuck Norris" :email "chuck@norris.com")
-				=> (contains {:username "Chuck Norris" :email "chuck@norris.com"}))
+			=> (contains {:username "Chuck Norris" :email "chuck@norris.com"}))
 
+
+(fact "function literals can use rest args matching with '%&'"
+	(apply
+		#(- % (apply + %&)) (range 1 6)) => -13)
 
 
 
